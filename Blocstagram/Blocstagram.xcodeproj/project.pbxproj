@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F6825BEE1B8D0164006CE0AC /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = F6825BED1B8D0164006CE0AC /* User.m */; };
+		F6825BF11B8D0264006CE0AC /* Media.m in Sources */ = {isa = PBXBuildFile; fileRef = F6825BF01B8D0264006CE0AC /* Media.m */; };
+		F6825BF41B8D03F8006CE0AC /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = F6825BF31B8D03F8006CE0AC /* Comment.m */; };
+		F6825BF71B8D0502006CE0AC /* DataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = F6825BF61B8D0502006CE0AC /* DataSource.m */; };
 		F6A0B2711B8CBED500EDE878 /* 1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F6A0B2671B8CBED500EDE878 /* 1.jpg */; };
 		F6A0B2721B8CBED500EDE878 /* 2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F6A0B2681B8CBED500EDE878 /* 2.jpg */; };
 		F6A0B2731B8CBED500EDE878 /* 3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F6A0B2691B8CBED500EDE878 /* 3.jpg */; };
@@ -36,6 +40,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F6825BEC1B8D0164006CE0AC /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		F6825BED1B8D0164006CE0AC /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		F6825BEF1B8D0264006CE0AC /* Media.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Media.h; sourceTree = "<group>"; };
+		F6825BF01B8D0264006CE0AC /* Media.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Media.m; sourceTree = "<group>"; };
+		F6825BF21B8D03F8006CE0AC /* Comment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Comment.h; sourceTree = "<group>"; };
+		F6825BF31B8D03F8006CE0AC /* Comment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Comment.m; sourceTree = "<group>"; };
+		F6825BF51B8D0502006CE0AC /* DataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataSource.h; sourceTree = "<group>"; };
+		F6825BF61B8D0502006CE0AC /* DataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataSource.m; sourceTree = "<group>"; };
 		F6A0B2671B8CBED500EDE878 /* 1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1.jpg; sourceTree = "<group>"; };
 		F6A0B2681B8CBED500EDE878 /* 2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 2.jpg; sourceTree = "<group>"; };
 		F6A0B2691B8CBED500EDE878 /* 3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 3.jpg; sourceTree = "<group>"; };
@@ -78,6 +90,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F6825BEB1B8D0139006CE0AC /* MVC */ = {
+			isa = PBXGroup;
+			children = (
+				F6825BEC1B8D0164006CE0AC /* User.h */,
+				F6825BED1B8D0164006CE0AC /* User.m */,
+				F6825BEF1B8D0264006CE0AC /* Media.h */,
+				F6825BF01B8D0264006CE0AC /* Media.m */,
+				F6825BF21B8D03F8006CE0AC /* Comment.h */,
+				F6825BF31B8D03F8006CE0AC /* Comment.m */,
+				F6825BF51B8D0502006CE0AC /* DataSource.h */,
+				F6825BF61B8D0502006CE0AC /* DataSource.m */,
+			);
+			name = MVC;
+			sourceTree = "<group>";
+		};
 		F6A0B2661B8CBE7D00EDE878 /* Images */ = {
 			isa = PBXGroup;
 			children = (
@@ -116,6 +143,7 @@
 		F6A455D11B8CBC4100F27092 /* Blocstagram */ = {
 			isa = PBXGroup;
 			children = (
+				F6825BEB1B8D0139006CE0AC /* MVC */,
 				F6A0B2661B8CBE7D00EDE878 /* Images */,
 				F6A455D61B8CBC4100F27092 /* AppDelegate.h */,
 				F6A455D71B8CBC4100F27092 /* AppDelegate.m */,
@@ -263,7 +291,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F6825BEE1B8D0164006CE0AC /* User.m in Sources */,
+				F6825BF41B8D03F8006CE0AC /* Comment.m in Sources */,
+				F6825BF11B8D0264006CE0AC /* Media.m in Sources */,
 				F6A455D81B8CBC4100F27092 /* AppDelegate.m in Sources */,
+				F6825BF71B8D0502006CE0AC /* DataSource.m in Sources */,
 				F6A455D51B8CBC4100F27092 /* main.m in Sources */,
 				F6A0B27D1B8CBF9500EDE878 /* ImagesTableViewController.m in Sources */,
 			);
