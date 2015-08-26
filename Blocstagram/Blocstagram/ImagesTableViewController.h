@@ -10,5 +10,6 @@
 
 @interface ImagesTableViewController : UITableViewController
 
+- (NSArray *) items;
 
 @end
