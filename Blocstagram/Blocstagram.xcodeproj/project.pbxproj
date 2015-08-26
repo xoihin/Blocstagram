@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F61231AC1B8DFFBA00A1E7D7 /* MediaTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F61231AB1B8DFFBA00A1E7D7 /* MediaTableViewCell.m */; };
 		F6825BEE1B8D0164006CE0AC /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = F6825BED1B8D0164006CE0AC /* User.m */; };
 		F6825BF11B8D0264006CE0AC /* Media.m in Sources */ = {isa = PBXBuildFile; fileRef = F6825BF01B8D0264006CE0AC /* Media.m */; };
 		F6825BF41B8D03F8006CE0AC /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = F6825BF31B8D03F8006CE0AC /* Comment.m */; };
@@ -40,6 +41,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F61231AA1B8DFFBA00A1E7D7 /* MediaTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaTableViewCell.h; sourceTree = "<group>"; };
+		F61231AB1B8DFFBA00A1E7D7 /* MediaTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaTableViewCell.m; sourceTree = "<group>"; };
 		F6825BEC1B8D0164006CE0AC /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		F6825BED1B8D0164006CE0AC /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		F6825BEF1B8D0264006CE0AC /* Media.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Media.h; sourceTree = "<group>"; };
@@ -149,6 +152,8 @@
 				F6A455D71B8CBC4100F27092 /* AppDelegate.m */,
 				F6A0B27B1B8CBF9500EDE878 /* ImagesTableViewController.h */,
 				F6A0B27C1B8CBF9500EDE878 /* ImagesTableViewController.m */,
+				F61231AA1B8DFFBA00A1E7D7 /* MediaTableViewCell.h */,
+				F61231AB1B8DFFBA00A1E7D7 /* MediaTableViewCell.m */,
 				F6A455DF1B8CBC4100F27092 /* Images.xcassets */,
 				F6A455E11B8CBC4100F27092 /* LaunchScreen.xib */,
 				F6A455D21B8CBC4100F27092 /* Supporting Files */,
@@ -293,6 +298,7 @@
 			files = (
 				F6825BEE1B8D0164006CE0AC /* User.m in Sources */,
 				F6825BF41B8D03F8006CE0AC /* Comment.m in Sources */,
+				F61231AC1B8DFFBA00A1E7D7 /* MediaTableViewCell.m in Sources */,
 				F6825BF11B8D0264006CE0AC /* Media.m in Sources */,
 				F6A455D81B8CBC4100F27092 /* AppDelegate.m in Sources */,
 				F6825BF71B8D0502006CE0AC /* DataSource.m in Sources */,
