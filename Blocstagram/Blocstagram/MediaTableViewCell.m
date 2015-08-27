@@ -30,6 +30,8 @@ static UIColor *linkColor;
 static UIColor *myOrangeColor;
 static NSParagraphStyle *paragraphStyle;
 
+static NSParagraphStyle *paragraphStyleRightAlign;
+
 
 
 @implementation MediaTableViewCell
@@ -147,9 +149,9 @@ static NSParagraphStyle *paragraphStyle;
 
 
 - (NSAttributedString *) commentString {
-    NSMutableAttributedString *commentString = [[NSMutableAttributedString alloc] init];
     
-    NSInteger commentLineNumber = 1;
+    NSMutableAttributedString *commentString = [[NSMutableAttributedString alloc] init];
+    int commentLineNumber = 1;
     
     for (Comment *comment in self.mediaItem.comments) {
         // Make a string that says "username comment" followed by a line break
@@ -158,11 +160,21 @@ static NSParagraphStyle *paragraphStyle;
         // Make an attributed string, with the "username" bold
         NSMutableAttributedString * oneCommentString = [[NSMutableAttributedString alloc]init];
         
-        // First line of comment in orange
+        // First comment in orange
         if (commentLineNumber == 1) {
             oneCommentString = [[NSMutableAttributedString alloc] initWithString:baseString attributes:@{NSFontAttributeName : lightFont, NSParagraphStyleAttributeName : paragraphStyle, NSForegroundColorAttributeName : myOrangeColor}];
-        } else {
-            oneCommentString = [[NSMutableAttributedString alloc] initWithString:baseString attributes:@{NSFontAttributeName : lightFont, NSParagraphStyleAttributeName : paragraphStyle}];
+        }
+        
+        // After first comment
+        if (commentLineNumber > 1) {
+            // Determine odd / even comment lines
+            if (commentLineNumber % 2 == 0) {
+                // remainder 0
+                oneCommentString = [[NSMutableAttributedString alloc] initWithString:baseString attributes:@{NSFontAttributeName : lightFont, NSParagraphStyleAttributeName : paragraphStyleRightAlign}];
+            } else {
+                // remainder not 0
+                oneCommentString = [[NSMutableAttributedString alloc] initWithString:baseString attributes:@{NSFontAttributeName : lightFont, NSParagraphStyleAttributeName : paragraphStyle}];
+            }
         }
         
         NSRange usernameRange = [baseString rangeOfString:comment.from.userName];
@@ -172,7 +184,7 @@ static NSParagraphStyle *paragraphStyle;
         [commentString appendAttributedString:oneCommentString];
         
         // Increase comment-line-number
-        commentLineNumber += commentLineNumber;
+        commentLineNumber = commentLineNumber + 1;
     }
     
     return commentString;
@@ -196,6 +208,15 @@ static NSParagraphStyle *paragraphStyle;
     mutableParagraphStyle.paragraphSpacingBefore = 5;
     
     paragraphStyle = mutableParagraphStyle;
+    
+    // With right alignment
+    NSMutableParagraphStyle *mutableParagraphStyle2 = [[NSMutableParagraphStyle alloc] init];
+    mutableParagraphStyle2.headIndent = 20.0;
+    mutableParagraphStyle2.firstLineHeadIndent = 20.0;
+    mutableParagraphStyle2.tailIndent = -20.0;
+    mutableParagraphStyle2.paragraphSpacingBefore = 5;
+    mutableParagraphStyle2.alignment = NSTextAlignmentRight;
+    paragraphStyleRightAlign = mutableParagraphStyle2;
 }
 
 
