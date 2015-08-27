@@ -27,7 +27,9 @@ static UIFont *boldFont;
 static UIColor *usernameLabelGray;
 static UIColor *commentLabelGray;
 static UIColor *linkColor;
+static UIColor *myOrangeColor;
 static NSParagraphStyle *paragraphStyle;
+static NSParagraphStyle *paragraphStyle2;
 
 
 
@@ -54,6 +56,7 @@ static NSParagraphStyle *paragraphStyle;
 
 
 - (void) setMediaItem:(Media *)mediaItem {
+    
     _mediaItem = mediaItem;
     self.mediaImageView.image = _mediaItem.image;
     self.usernameAndCaptionLabel.attributedText = [self usernameAndCaptionString];
@@ -80,10 +83,12 @@ static NSParagraphStyle *paragraphStyle;
 
 
 - (CGSize) sizeOfString:(NSAttributedString *)string {
+    
     CGSize maxSize = CGSizeMake(CGRectGetWidth(self.contentView.bounds) - 40, 0.0);
     CGRect sizeRect = [string boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin context:nil];
     sizeRect.size.height += 20;
     sizeRect = CGRectIntegral(sizeRect);
+    
     return sizeRect.size;
 }
 
@@ -134,6 +139,10 @@ static NSParagraphStyle *paragraphStyle;
     [mutableUsernameAndCaptionString addAttribute:NSFontAttributeName value:[boldFont fontWithSize:usernameFontSize] range:usernameRange];
     [mutableUsernameAndCaptionString addAttribute:NSForegroundColorAttributeName value:linkColor range:usernameRange];
     
+    // In crease the kerning of the image caption
+    NSRange captionRange = [baseString rangeOfString:self.mediaItem.caption];
+    [mutableUsernameAndCaptionString addAttribute:NSKernAttributeName value:@(2.0f) range:captionRange];
+    
     return mutableUsernameAndCaptionString;
 }
 
@@ -141,19 +150,31 @@ static NSParagraphStyle *paragraphStyle;
 - (NSAttributedString *) commentString {
     NSMutableAttributedString *commentString = [[NSMutableAttributedString alloc] init];
     
+    NSInteger commentLineNumber = 1;
+    
     for (Comment *comment in self.mediaItem.comments) {
         // Make a string that says "username comment" followed by a line break
         NSString *baseString = [NSString stringWithFormat:@"%@ %@\n", comment.from.userName, comment.text];
         
         // Make an attributed string, with the "username" bold
+        NSMutableAttributedString * oneCommentString = [[NSMutableAttributedString alloc]init];
+//        NSMutableAttributedString * oneCommentString = [[NSMutableAttributedString alloc]initWithString:baseString attributes:@{NSParagraphStyleAttributeName : paragraphStyle2}];
         
-        NSMutableAttributedString *oneCommentString = [[NSMutableAttributedString alloc] initWithString:baseString attributes:@{NSFontAttributeName : lightFont, NSParagraphStyleAttributeName : paragraphStyle}];
+        // First line of comment in orange
+        if (commentLineNumber == 1) {
+            oneCommentString = [[NSMutableAttributedString alloc] initWithString:baseString attributes:@{NSFontAttributeName : lightFont, NSParagraphStyleAttributeName : paragraphStyle, NSForegroundColorAttributeName : myOrangeColor}];
+        } else {
+            oneCommentString = [[NSMutableAttributedString alloc] initWithString:baseString attributes:@{NSFontAttributeName : lightFont, NSParagraphStyleAttributeName : paragraphStyle}];
+        }
         
         NSRange usernameRange = [baseString rangeOfString:comment.from.userName];
         [oneCommentString addAttribute:NSFontAttributeName value:boldFont range:usernameRange];
         [oneCommentString addAttribute:NSForegroundColorAttributeName value:linkColor range:usernameRange];
         
         [commentString appendAttributedString:oneCommentString];
+        
+        // Increase comment-line-number
+        commentLineNumber += commentLineNumber;
     }
     
     return commentString;
@@ -168,6 +189,7 @@ static NSParagraphStyle *paragraphStyle;
     usernameLabelGray = [UIColor colorWithRed:0.933 green:0.933 blue:0.933 alpha:1]; /*#eeeeee*/
     commentLabelGray = [UIColor colorWithRed:0.898 green:0.898 blue:0.898 alpha:1]; /*#e5e5e5*/
     linkColor = [UIColor colorWithRed:0.345 green:0.314 blue:0.427 alpha:1]; /*#58506d*/
+    myOrangeColor = [UIColor orangeColor];
     
     NSMutableParagraphStyle *mutableParagraphStyle = [[NSMutableParagraphStyle alloc] init];
     mutableParagraphStyle.headIndent = 20.0;
@@ -176,6 +198,10 @@ static NSParagraphStyle *paragraphStyle;
     mutableParagraphStyle.paragraphSpacingBefore = 5;
     
     paragraphStyle = mutableParagraphStyle;
+    
+    // Add alignment to paragraphStyle2
+//    mutableParagraphStyle.alignment = NSTextAlignmentRight;
+//    paragraphStyle2 = mutableParagraphStyle;
 }
 
 

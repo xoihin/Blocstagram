@@ -51,6 +51,7 @@
     NSMutableArray *randomMediaItems = [NSMutableArray array];
     
     for (int i = 1; i <= 10; i++) {
+//    for (int i = 1; i <= 2; i++) {
         NSString *imageName = [NSString stringWithFormat:@"%d.jpg", i];
         UIImage *image = [UIImage imageNamed:imageName];
         
