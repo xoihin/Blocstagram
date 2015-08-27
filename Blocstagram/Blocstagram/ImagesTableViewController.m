@@ -14,16 +14,12 @@
 #import "MediaTableViewCell.h"
 
 
-
 @interface ImagesTableViewController ()
 
 @end
 
 
 @implementation ImagesTableViewController
-
-
-
 
 
 
@@ -40,17 +36,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"imageCell"];
     [self.tableView registerClass:[MediaTableViewCell class] forCellReuseIdentifier:@"mediaCell"];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    
 }
-
-
-
 
 
 - (NSArray *) items {
@@ -58,58 +49,24 @@
 }
 
 
-
-
 #pragma mark - Table view data source
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-//    return [DataSource sharedInstance].mediaItems.count;
+
     return [self items].count;
 }
 
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-//    Media *item = [DataSource sharedInstance].mediaItems[indexPath.row];
     Media *item = [self items][indexPath.row];
-//    UIImage *image = item.image;
-    
-//    return (CGRectGetWidth(self.view.frame) / image.size.width) * image.size.height;
-//    return image.size.height / image.size.width * CGRectGetWidth(self.view.frame);
-//    return 300 + (image.size.height / image.size.width * CGRectGetWidth(self.view.frame));
+
     return [MediaTableViewCell heightForMediaItem:item width:CGRectGetWidth(self.view.frame)];
 }
 
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    // #1
-//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"imageCell" forIndexPath:indexPath];
-    
-    // Configure the cell...
-    // #2
-//    static NSInteger imageViewTag = 1234;
-//    UIImageView *imageView = (UIImageView*)[cell.contentView viewWithTag:imageViewTag];
-//    
-//    // #3
-//    if (!imageView) {
-//        // This is a new cell, it doesn't have an image view yet
-//        imageView = [[UIImageView alloc] init];
-//        imageView.contentMode = UIViewContentModeScaleToFill;
-//        
-//        imageView.frame = cell.contentView.bounds;
-//        
-//        // #4
-//        imageView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-//        
-//        imageView.tag = imageViewTag;
-//        [cell.contentView addSubview:imageView];
-//    }
-//        
-////    Media *item = [DataSource sharedInstance].mediaItems[indexPath.row];
-//    Media *item = [self items] [indexPath.row];
-//    imageView.image = item.image;
     
     MediaTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"mediaCell" forIndexPath:indexPath];
     cell.mediaItem = [DataSource sharedInstance].mediaItems[indexPath.row];
