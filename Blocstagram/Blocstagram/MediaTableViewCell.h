@@ -20,6 +20,4 @@
 + (CGFloat) heightForMediaItem:(Media *)mediaItem width:(CGFloat)width;
 
 
-
-
 @end

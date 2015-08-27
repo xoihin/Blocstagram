@@ -29,7 +29,6 @@ static UIColor *commentLabelGray;
 static UIColor *linkColor;
 static UIColor *myOrangeColor;
 static NSParagraphStyle *paragraphStyle;
-static NSParagraphStyle *paragraphStyle2;
 
 
 
@@ -158,7 +157,6 @@ static NSParagraphStyle *paragraphStyle2;
         
         // Make an attributed string, with the "username" bold
         NSMutableAttributedString * oneCommentString = [[NSMutableAttributedString alloc]init];
-//        NSMutableAttributedString * oneCommentString = [[NSMutableAttributedString alloc]initWithString:baseString attributes:@{NSParagraphStyleAttributeName : paragraphStyle2}];
         
         // First line of comment in orange
         if (commentLineNumber == 1) {
@@ -198,12 +196,7 @@ static NSParagraphStyle *paragraphStyle2;
     mutableParagraphStyle.paragraphSpacingBefore = 5;
     
     paragraphStyle = mutableParagraphStyle;
-    
-    // Add alignment to paragraphStyle2
-//    mutableParagraphStyle.alignment = NSTextAlignmentRight;
-//    paragraphStyle2 = mutableParagraphStyle;
 }
-
 
 
 
