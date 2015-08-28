@@ -13,10 +13,11 @@
 
 
 
-@interface DataSource ()
+@interface DataSource () {
 
-@property (nonatomic, strong) NSArray *mediaItems;
+NSMutableArray *_mediaItems;
 
+}
 @end
 
 
@@ -36,6 +37,12 @@
 }
 
 
+- (void) deleteMediaItem:(Media *)item {
+    NSMutableArray *mutableArrayWithKVO = [self mutableArrayValueForKey:@"mediaItems"];
+    [mutableArrayWithKVO removeObject:item];
+}
+
+
 - (instancetype) init {
     self = [super init];
     
@@ -51,6 +58,7 @@
     NSMutableArray *randomMediaItems = [NSMutableArray array];
     
     for (int i = 1; i <= 10; i++) {
+//    for (int i = 1; i <= 3; i++) {
         NSString *imageName = [NSString stringWithFormat:@"%d.jpg", i];
         UIImage *image = [UIImage imageNamed:imageName];
         
@@ -74,7 +82,7 @@
         }
     }
     
-    self.mediaItems = randomMediaItems;
+    _mediaItems = randomMediaItems;
 }
 
 
@@ -129,6 +137,36 @@
     
     return [NSString stringWithString:s];
 }
+
+
+
+#pragma mark - Key/Value Observing
+
+- (NSUInteger) countOfMediaItems {
+    return self.mediaItems.count;
+}
+
+- (id) objectInMediaItemsAtIndex:(NSUInteger)index {
+    return [self.mediaItems objectAtIndex:index];
+}
+
+- (NSArray *) mediaItemsAtIndexes:(NSIndexSet *)indexes {
+    return [self.mediaItems objectsAtIndexes:indexes];
+}
+
+- (void) insertObject:(Media *)object inMediaItemsAtIndex:(NSUInteger)index {
+    [_mediaItems insertObject:object atIndex:index];
+}
+
+- (void) removeObjectFromMediaItemsAtIndex:(NSUInteger)index {
+    [_mediaItems removeObjectAtIndex:index];
+}
+
+- (void) replaceObjectInMediaItemsAtIndex:(NSUInteger)index withObject:(id)object {
+    [_mediaItems replaceObjectAtIndex:index withObject:object];
+}
+
+
 
 
 @end
