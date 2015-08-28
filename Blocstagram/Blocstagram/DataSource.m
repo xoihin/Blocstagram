@@ -21,10 +21,7 @@ NSMutableArray *_mediaItems;
 @end
 
 
-
 @implementation DataSource
-
-
 
 
 + (instancetype) sharedInstance {
@@ -37,19 +34,12 @@ NSMutableArray *_mediaItems;
 }
 
 
-- (void) deleteMediaItem:(Media *)item {
-    NSMutableArray *mutableArrayWithKVO = [self mutableArrayValueForKey:@"mediaItems"];
-    [mutableArrayWithKVO removeObject:item];
-}
-
-
 - (instancetype) init {
     self = [super init];
     
     if (self) {
         [self addRandomData];
     }
-    
     return self;
 }
 
@@ -58,7 +48,6 @@ NSMutableArray *_mediaItems;
     NSMutableArray *randomMediaItems = [NSMutableArray array];
     
     for (int i = 1; i <= 10; i++) {
-//    for (int i = 1; i <= 3; i++) {
         NSString *imageName = [NSString stringWithFormat:@"%d.jpg", i];
         UIImage *image = [UIImage imageNamed:imageName];
         
@@ -75,13 +64,11 @@ NSMutableArray *_mediaItems;
                 Comment *randomComment = [self randomComment];
                 [randomComments addObject:randomComment];
             }
-            
             media.comments = randomComments;
             
             [randomMediaItems addObject:media];
         }
     }
-    
     _mediaItems = randomMediaItems;
 }
 
@@ -97,8 +84,6 @@ NSMutableArray *_mediaItems;
     
     return user;
 }
-
-
 
 
 - (Comment *) randomComment {
@@ -141,6 +126,19 @@ NSMutableArray *_mediaItems;
 
 
 #pragma mark - Key/Value Observing
+
+// Move an item:  first delete, than insert
+- (void) moveMediaItemToTop:(Media *)item {
+    NSMutableArray *mutableArrayWithKVO = [self mutableArrayValueForKey:@"mediaItems"];
+    [mutableArrayWithKVO removeObject:item];
+    [mutableArrayWithKVO insertObject:item atIndex:0];
+}
+
+
+- (void) deleteMediaItem:(Media *)item {
+    NSMutableArray *mutableArrayWithKVO = [self mutableArrayValueForKey:@"mediaItems"];
+    [mutableArrayWithKVO removeObject:item];
+}
 
 - (NSUInteger) countOfMediaItems {
     return self.mediaItems.count;

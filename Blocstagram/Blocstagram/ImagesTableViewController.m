@@ -44,6 +44,7 @@
 
 
 - (void) observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+    
     if (object == [DataSource sharedInstance] && [keyPath isEqualToString:@"mediaItems"]) {
         // We know mediaItems changed.  Let's see what kind of change it is.
         NSKeyValueChange kindOfChange = [change[NSKeyValueChangeKindKey] unsignedIntegerValue];
@@ -61,6 +62,7 @@
             
             // #1 - Convert this NSIndexSet to an NSArray of NSIndexPaths (which is what the table view animation methods require)
             NSMutableArray *indexPathsThatChanged = [NSMutableArray array];
+            
             [indexSetOfChanges enumerateIndexesUsingBlock:^(NSUInteger idx, BOOL *stop) {
                 NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:idx inSection:0];
                 [indexPathsThatChanged addObject:newIndexPath];
@@ -137,7 +139,10 @@
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
         Media *item = [DataSource sharedInstance].mediaItems[indexPath.row];
-        [[DataSource sharedInstance] deleteMediaItem:item];
+//        [[DataSource sharedInstance] deleteMediaItem:item];
+        
+        // Update the code so that instead of deleting a cell, swipe-to-delete moves that cell to the top.
+        [[DataSource sharedInstance] moveMediaItemToTop:item];
     }
 }
 
