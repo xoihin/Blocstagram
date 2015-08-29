@@ -19,4 +19,14 @@
 
 - (void) deleteMediaItem:(Media *)item;
 
+
+// Add a "Type" completion handler definition
+typedef void (^NewItemCompletionBlock)(NSError *error);
+
+- (void) requestNewItemsWithCompletionHandler:(NewItemCompletionBlock)completionHandler;
+
+- (void) requestOldItemsWithCompletionHandler:(NewItemCompletionBlock)completionHandler;
+
+
+
 @end
