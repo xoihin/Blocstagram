@@ -27,7 +27,7 @@ NSString *const LoginViewControllerDidGetAccessTokenNotification = @"LoginViewCo
     return @"http://bloc.io";
 }
 
-
+ 
 - (void) dealloc {
     // Removing this line can cause a flickering effect when you relaunch the app after logging in, as the web view is briefly displayed, automatically authenticates with cookies, returns the access token, and dismisses the login view, sometimes in less than a second.
     [self clearInstagramCookies];
@@ -70,6 +70,16 @@ NSString *const LoginViewControllerDidGetAccessTokenNotification = @"LoginViewCo
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    
+    // Add a "Back" button
+    UIBarButtonItem *backButton = [[UIBarButtonItem alloc]
+                                   initWithTitle:@"Back"
+                                   style:UIBarButtonItemStylePlain
+                                   target:self
+                                   action:@selector(backButtonPressed)];
+    self.navigationItem.leftBarButtonItem = backButton;
+    
+    
     UIWebView *webView = [[UIWebView alloc] init];
     webView.delegate = self;
     
@@ -88,6 +98,12 @@ NSString *const LoginViewControllerDidGetAccessTokenNotification = @"LoginViewCo
     
 }
 
+
+- (void) backButtonPressed {
+    if (self.webView.canGoBack) {
+        [self.webView goBack];
+    }
+}
 
 
 - (void) viewWillLayoutSubviews {
