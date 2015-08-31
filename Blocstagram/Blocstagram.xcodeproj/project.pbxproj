@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		119ACD7209CEEB117F6F9310 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 945D2C29449DD3E399708347 /* libPods.a */; };
 		F61231AC1B8DFFBA00A1E7D7 /* MediaTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F61231AB1B8DFFBA00A1E7D7 /* MediaTableViewCell.m */; };
+		F62B6DFA1B94D3D20064DAF0 /* MediaFullScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F62B6DF91B94D3D20064DAF0 /* MediaFullScreenViewController.m */; };
+		F62B6DFD1B94DA8B0064DAF0 /* MediaFullScreenAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = F62B6DFC1B94DA8B0064DAF0 /* MediaFullScreenAnimator.m */; };
 		F6825BEE1B8D0164006CE0AC /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = F6825BED1B8D0164006CE0AC /* User.m */; };
 		F6825BF11B8D0264006CE0AC /* Media.m in Sources */ = {isa = PBXBuildFile; fileRef = F6825BF01B8D0264006CE0AC /* Media.m */; };
 		F6825BF41B8D03F8006CE0AC /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = F6825BF31B8D03F8006CE0AC /* Comment.m */; };
@@ -48,6 +50,10 @@
 		E58A5999C7F8BA9B7C08C92D /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		F61231AA1B8DFFBA00A1E7D7 /* MediaTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaTableViewCell.h; sourceTree = "<group>"; };
 		F61231AB1B8DFFBA00A1E7D7 /* MediaTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaTableViewCell.m; sourceTree = "<group>"; };
+		F62B6DF81B94D3D20064DAF0 /* MediaFullScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaFullScreenViewController.h; sourceTree = "<group>"; };
+		F62B6DF91B94D3D20064DAF0 /* MediaFullScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaFullScreenViewController.m; sourceTree = "<group>"; };
+		F62B6DFB1B94DA8B0064DAF0 /* MediaFullScreenAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaFullScreenAnimator.h; sourceTree = "<group>"; };
+		F62B6DFC1B94DA8B0064DAF0 /* MediaFullScreenAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaFullScreenAnimator.m; sourceTree = "<group>"; };
 		F6825BEC1B8D0164006CE0AC /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		F6825BED1B8D0164006CE0AC /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		F6825BEF1B8D0264006CE0AC /* Media.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Media.h; sourceTree = "<group>"; };
@@ -179,6 +185,10 @@
 				F6A455D71B8CBC4100F27092 /* AppDelegate.m */,
 				F6A0B27B1B8CBF9500EDE878 /* ImagesTableViewController.h */,
 				F6A0B27C1B8CBF9500EDE878 /* ImagesTableViewController.m */,
+				F62B6DF81B94D3D20064DAF0 /* MediaFullScreenViewController.h */,
+				F62B6DF91B94D3D20064DAF0 /* MediaFullScreenViewController.m */,
+				F62B6DFB1B94DA8B0064DAF0 /* MediaFullScreenAnimator.h */,
+				F62B6DFC1B94DA8B0064DAF0 /* MediaFullScreenAnimator.m */,
 				F61231AA1B8DFFBA00A1E7D7 /* MediaTableViewCell.h */,
 				F61231AB1B8DFFBA00A1E7D7 /* MediaTableViewCell.m */,
 				F6B6C2FF1B91F901003A81E5 /* LoginViewController.h */,
@@ -360,9 +370,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F62B6DFA1B94D3D20064DAF0 /* MediaFullScreenViewController.m in Sources */,
 				F6825BEE1B8D0164006CE0AC /* User.m in Sources */,
 				F6825BF41B8D03F8006CE0AC /* Comment.m in Sources */,
 				F61231AC1B8DFFBA00A1E7D7 /* MediaTableViewCell.m in Sources */,
+				F62B6DFD1B94DA8B0064DAF0 /* MediaFullScreenAnimator.m in Sources */,
 				F6825BF11B8D0264006CE0AC /* Media.m in Sources */,
 				F6A455D81B8CBC4100F27092 /* AppDelegate.m in Sources */,
 				F6B6C3011B91F901003A81E5 /* LoginViewController.m in Sources */,
