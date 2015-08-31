@@ -24,6 +24,9 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
+    // Log where NSCachesDirectory is...
+    NSLog(@"Documents folder: %@",[[[NSFileManager defaultManager] URLsForDirectory:NSCachesDirectory inDomains:NSUserDomainMask] lastObject]);
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     
@@ -44,6 +47,10 @@
         }];
         
     } else {
+        
+        // Fetch newer content
+        [[DataSource sharedInstance] requestNewItemsWithCompletionHandler:nil];
+        
         ImagesTableViewController *imagesVC = [[ImagesTableViewController alloc] init];
         [navVC setViewControllers:@[imagesVC] animated:YES];
     }
