@@ -48,18 +48,12 @@
         
     } else {
         
-        // Fetch newer content
-        [[DataSource sharedInstance] requestNewItemsWithCompletionHandler:nil];
-        
         ImagesTableViewController *imagesVC = [[ImagesTableViewController alloc] init];
         [navVC setViewControllers:@[imagesVC] animated:YES];
     }
     
     self.window.rootViewController = navVC;
-    
-    
-//    self.window.backgroundColor = [UIColor whiteColor];
-    
+    self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
     return YES;

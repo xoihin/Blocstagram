@@ -75,6 +75,14 @@ NSMutableArray *_mediaItems;
                     if (storedMediaItems.count > 0) {
                         NSMutableArray *mutableMediaItems = [storedMediaItems mutableCopy];
                         
+                        // Force to find new items here
+                        [self requestNewItemsWithCompletionHandler:^(NSError *error) {
+                            if (error) {
+                                NSLog(@"Error force-to-refresh: %@", error);
+                            }
+                        }];
+                        
+                        
                         [self willChangeValueForKey:@"mediaItems"];
                         self.mediaItems = mutableMediaItems;
                         [self didChangeValueForKey:@"mediaItems"];
