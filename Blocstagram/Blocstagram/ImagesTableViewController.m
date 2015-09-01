@@ -211,6 +211,15 @@
 }
 
 
+// Assignment changes
+- (void) cell:(MediaTableViewCell *)cell didDoubleTouchesTapImageView:(UIImageView *)imageView {
+    NSLog(@"Called method didDoubleTouchesTapImageView...");
+
+    [[DataSource sharedInstance] downloadImageForMediaItem:cell.mediaItem];
+}
+
+
+
 /*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {

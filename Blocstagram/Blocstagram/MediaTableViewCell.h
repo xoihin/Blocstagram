@@ -17,6 +17,8 @@
 
 - (void) cell:(MediaTableViewCell *)cell didLongPressImageView:(UIImageView *)imageView;
 
+// Assignment changes
+- (void) cell:(MediaTableViewCell *)cell didDoubleTouchesTapImageView:(UIImageView *)imageView;
 
 
 @end
