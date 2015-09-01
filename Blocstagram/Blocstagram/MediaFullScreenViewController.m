@@ -45,6 +45,19 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+    
+    self.navigationItem.title = @"Image";
+    
+    // Add "Share" button
+    UIBarButtonItem *shareButton = [[UIBarButtonItem alloc]
+                                    initWithTitle:@"Share"
+                                    style:UIBarButtonItemStylePlain
+                                    target:self
+                                    action:@selector(shareButtonPressed)];
+    
+    self.navigationItem.rightBarButtonItem = shareButton;
+    
     // #1
     self.scrollView = [UIScrollView new];
     self.scrollView.delegate = self;
@@ -75,8 +88,32 @@
 }
 
 
+
+- (void) shareButtonPressed {
+    
+    NSMutableArray *itemsToShare = [NSMutableArray array];
+    
+    if (self.media.caption.length > 0) {
+        [itemsToShare addObject:self.media.caption];
+    }
+    
+    if (self.media.image) {
+        [itemsToShare addObject:self.media.image];
+    }
+    
+    if (itemsToShare.count > 0) {
+        UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:itemsToShare applicationActivities:nil];
+        [self presentViewController:activityVC animated:YES completion:nil];
+    }
+}
+
+
+
+
+
 - (void) viewWillLayoutSubviews {
     [super viewWillLayoutSubviews];
+    
     // #4
     self.scrollView.frame = self.view.bounds;
     
@@ -157,7 +194,10 @@
 #pragma mark - Gesture Recognizers
 
 - (void) tapFired:(UITapGestureRecognizer *)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
+//    [self dismissViewControllerAnimated:YES completion:nil];
+    
+    // Since this view controller was pushed, use this to dimiss.
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 

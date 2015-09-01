@@ -41,6 +41,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+    
+    self.navigationItem.title = @"Blocstagram";
+    
     // Register for KVO
     [[DataSource sharedInstance] addObserver:self forKeyPath:@"mediaItems" options:0 context:nil];
     
@@ -188,7 +192,9 @@
     fullScreenVC.transitioningDelegate = self;
     fullScreenVC.modalPresentationStyle = UIModalPresentationCustom;
     
-    [self presentViewController:fullScreenVC animated:YES completion:nil];
+//    [self presentViewController:fullScreenVC animated:YES completion:nil];
+    // Change to "push" so the Navigation Bar will be visible.
+    [self.navigationController pushViewController:fullScreenVC animated:YES];
 }
 
 
