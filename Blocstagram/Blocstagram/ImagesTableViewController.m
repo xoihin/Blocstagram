@@ -48,7 +48,6 @@
     self.refreshControl = [[UIRefreshControl alloc] init];
     [self.refreshControl addTarget:self action:@selector(refreshControlDidFire:) forControlEvents:UIControlEventValueChanged];
 
-    
     [self.tableView registerClass:[MediaTableViewCell class] forCellReuseIdentifier:@"mediaCell"];
 }
 
@@ -78,6 +77,22 @@
     [self infiniteScrollIfNecessary];
 }
 
+
+// Solution #2:  Download image for the cell currently visible on the screen starting when the scrolling slows down.
+- (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView {
+    
+    scrollView.decelerationRate = UIScrollViewDecelerationRateFast;
+    
+    for (UITableViewCell *cell in [self.tableView visibleCells]) {
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+//        NSLog(@"%@",indexPath);
+        
+        Media *mediaItem = [DataSource sharedInstance].mediaItems[indexPath.row];
+        if (mediaItem.downloadState == MediaDownloadStateNeedsImage) {
+            [[DataSource sharedInstance] downloadImageForMediaItem:mediaItem];
+        }
+    }
+}
 
 
 
@@ -149,7 +164,9 @@
     if (item.image) {
         return 350;
     } else {
-        return 150;
+//        return 150;
+        // Solution #1: when image isn't present, set height to 5.
+        return 5;
     }
 }
 
