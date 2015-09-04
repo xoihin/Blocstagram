@@ -206,6 +206,19 @@
 - (void) cellDidPressLikeButton:(MediaTableViewCell *)cell {
     Media *item = cell.mediaItem;
     
+    
+    // Update total like counts
+    NSInteger totalLikeCount =[item.likeCount integerValue];
+    
+    if (item.likeState == LikeStateNotLiked) {
+        totalLikeCount++;
+    } else if (item.likeState == LikeStateLiked){
+        totalLikeCount--;
+    }
+    
+    
+    cell.mediaItem.likeCount  = [NSNumber numberWithInteger:totalLikeCount];
+    
     [[DataSource sharedInstance] toggleLikeOnMediaItem:item withCompletionHandler:^{
         if (cell.mediaItem == item) {
             cell.mediaItem = item;

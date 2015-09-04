@@ -400,6 +400,7 @@ NSMutableArray *_mediaItems;
             }
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             mediaItem.likeState = LikeStateNotLiked;
+//            mediaItem.likeState = LikeStateLiked;     // For my testing
             
             if (completionHandler) {
                 completionHandler();
@@ -418,6 +419,7 @@ NSMutableArray *_mediaItems;
             }
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             mediaItem.likeState = LikeStateLiked;
+//            mediaItem.likeState = LikeStateNotLiked;  // For my testing
             
             if (completionHandler) {
                 completionHandler();

@@ -47,6 +47,8 @@ static UIColor *commentLabelGray;
 static UIColor *linkColor;
 static NSParagraphStyle *paragraphStyle;
 
+static NSParagraphStyle *paragraphStyleForLikeLabel;
+
 
 
 @implementation MediaTableViewCell
@@ -139,6 +141,7 @@ static NSParagraphStyle *paragraphStyle;
         self.likeButton.backgroundColor = usernameLabelGray;
         
         self.likesLabel = [[UILabel alloc]init];
+        self.likesLabel.numberOfLines = 1;
         self.likesLabel.backgroundColor = usernameLabelGray;
         
         for (UIView *view in @[self.mediaImageView, self.usernameAndCaptionLabel, self.commentLabel, self.likesLabel, self.likeButton]) {
@@ -223,8 +226,8 @@ static NSParagraphStyle *paragraphStyle;
     NSString *baseString = [NSString stringWithFormat:@"%@", self.mediaItem.likeCount];
     NSMutableAttributedString *likesLabelString = [[NSMutableAttributedString alloc]
                                                    initWithString:baseString
-                                                   attributes:@{NSFontAttributeName : [lightFont fontWithSize:7],
-                                                   NSParagraphStyleAttributeName : paragraphStyle}];
+                                                   attributes:@{NSFontAttributeName : [lightFont fontWithSize:13],
+                                                   NSParagraphStyleAttributeName : paragraphStyleForLikeLabel}];
     return likesLabelString;
 }
 
@@ -287,6 +290,12 @@ static NSParagraphStyle *paragraphStyle;
     mutableParagraphStyle.paragraphSpacingBefore = 5;
     
     paragraphStyle = mutableParagraphStyle;
+    
+    
+    NSMutableParagraphStyle *mutableParagraphStyle2 = [[NSMutableParagraphStyle alloc] init];
+    mutableParagraphStyle2.alignment = NSTextAlignmentRight;
+    
+    paragraphStyleForLikeLabel = mutableParagraphStyle2;
 }
 
 
@@ -314,17 +323,6 @@ static NSParagraphStyle *paragraphStyle;
 #pragma mark - Liking
 
 - (void) likePressed:(UIButton *)sender {
-    
-    NSInteger totalCount =[self.mediaItem.likeCount integerValue];
-
-    if (self.mediaItem.likeState == LikeStateNotLiked) {
-        totalCount++;
-    } else if (self.mediaItem.likeState == LikeStateLiked){
-        totalCount--;
-    }
-
-    self.mediaItem.likeCount  = [NSNumber numberWithInteger:totalCount];
-    
     [self.delegate cellDidPressLikeButton:self];
 }
 
