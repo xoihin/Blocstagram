@@ -33,6 +33,8 @@
 
 @property (nonatomic, strong) LikeButton *likeButton;
 
+@property (nonatomic, strong) UILabel *likesLabel;
+
 
 @end
 
@@ -73,6 +75,7 @@ static NSParagraphStyle *paragraphStyle;
     self.usernameAndCaptionLabel.attributedText = [self usernameAndCaptionString];
     self.commentLabel.attributedText = [self commentString];
     self.likeButton.likeButtonState = mediaItem.likeState;
+    self.likesLabel.attributedText = [self likesLabelString];
 }
 
 
@@ -94,9 +97,6 @@ static NSParagraphStyle *paragraphStyle;
     } else {
         self.imageHeightConstraint.constant = 0;
     }
-    
-    // Hide the line between cells
-    self.separatorInset = UIEdgeInsetsMake(0, CGRectGetWidth(self.bounds)/2.0, 0, CGRectGetWidth(self.bounds)/2.0);
     
     // Hide the line between cells
     self.separatorInset = UIEdgeInsetsMake(0, CGRectGetWidth(self.bounds)/2.0, 0, CGRectGetWidth(self.bounds)/2.0);
@@ -138,7 +138,10 @@ static NSParagraphStyle *paragraphStyle;
         [self.likeButton addTarget:self action:@selector(likePressed:) forControlEvents:UIControlEventTouchUpInside];
         self.likeButton.backgroundColor = usernameLabelGray;
         
-        for (UIView *view in @[self.mediaImageView, self.usernameAndCaptionLabel, self.commentLabel, self.likeButton]) {
+        self.likesLabel = [[UILabel alloc]init];
+        self.likesLabel.backgroundColor = usernameLabelGray;
+        
+        for (UIView *view in @[self.mediaImageView, self.usernameAndCaptionLabel, self.commentLabel, self.likesLabel, self.likeButton]) {
             
             [self.contentView addSubview:view];
             
@@ -146,7 +149,7 @@ static NSParagraphStyle *paragraphStyle;
         }
         
         
-        NSDictionary *viewDictionary = NSDictionaryOfVariableBindings(_mediaImageView, _usernameAndCaptionLabel, _commentLabel, _likeButton);
+        NSDictionary *viewDictionary = NSDictionaryOfVariableBindings(_mediaImageView, _usernameAndCaptionLabel, _commentLabel, _likesLabel, _likeButton);
         
         [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_mediaImageView]|"
                                                                                  options:kNilOptions
@@ -156,7 +159,7 @@ static NSParagraphStyle *paragraphStyle;
 //                                                                                 options:kNilOptions
 //                                                                                 metrics:nil
 //                                                                                   views:viewDictionary]];
-        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_usernameAndCaptionLabel][_likeButton(==38)]|"
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_usernameAndCaptionLabel][_likesLabel(==50)][_likeButton(==38)]|"
                                                                                  options:NSLayoutFormatAlignAllTop | NSLayoutFormatAlignAllBottom
                                                                                  metrics:nil
                                                                                    views:viewDictionary]];
@@ -211,6 +214,18 @@ static NSParagraphStyle *paragraphStyle;
     
     [super setSelected:NO animated:animated];
 
+}
+
+
+
+- (NSAttributedString *) likesLabelString {
+    
+    NSString *baseString = [NSString stringWithFormat:@"%@", self.mediaItem.likeCount];
+    NSMutableAttributedString *likesLabelString = [[NSMutableAttributedString alloc]
+                                                   initWithString:baseString
+                                                   attributes:@{NSFontAttributeName : [lightFont fontWithSize:7],
+                                                   NSParagraphStyleAttributeName : paragraphStyle}];
+    return likesLabelString;
 }
 
 
@@ -299,6 +314,17 @@ static NSParagraphStyle *paragraphStyle;
 #pragma mark - Liking
 
 - (void) likePressed:(UIButton *)sender {
+    
+    NSInteger totalCount =[self.mediaItem.likeCount integerValue];
+
+    if (self.mediaItem.likeState == LikeStateNotLiked) {
+        totalCount++;
+    } else if (self.mediaItem.likeState == LikeStateLiked){
+        totalCount--;
+    }
+
+    self.mediaItem.likeCount  = [NSNumber numberWithInteger:totalCount];
+    
     [self.delegate cellDidPressLikeButton:self];
 }
 
