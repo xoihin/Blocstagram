@@ -98,9 +98,17 @@
     _isWritingComment = isWritingComment;
     
     if (animated) {
-        [UIView animateWithDuration:0.2 animations:^{
+//        [UIView animateWithDuration:0.2 animations:^{
+//            [self layoutSubviews];
+//        }];
+        
+        
+//  Damping is a value from 0 to 1 that determines how much the view bounces towards the end of the animation. The closer to 1 the value is, the less bouncy it will be. initialSpringVelocity as the name says, determines the initial velocity of the animation. This determines how strong the animation starts off. If you want it to start vigorously, then set a larger value, if you want a smooth animation, then you can set the value to 0.
+        
+        [UIView animateWithDuration:1.5 delay:0.05 usingSpringWithDamping:0.1 initialSpringVelocity:0 options:1 <<  0 animations:^{
             [self layoutSubviews];
-        }];
+        }completion:nil];
+        
     } else {
         [self layoutSubviews];
     }
