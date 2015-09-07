@@ -21,10 +21,13 @@
 
 @property (nonatomic, weak) UIImageView *lastTappedImageView;
 
+
 @end
 
 
 @implementation ImagesTableViewController
+
+    BOOL firstTime = true;
 
 
 
@@ -80,6 +83,8 @@
 
 // Solution #2:  Download image for the cell currently visible on the screen starting when the scrolling slows down.
 - (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView {
+    
+    firstTime = false;
     
     scrollView.decelerationRate = UIScrollViewDecelerationRateFast;
     
@@ -173,10 +178,14 @@
 
 
 - (void) tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
-    Media *mediaItem = [DataSource sharedInstance].mediaItems[indexPath.row];
-    if (mediaItem.downloadState == MediaDownloadStateNeedsImage) {
-        [[DataSource sharedInstance] downloadImageForMediaItem:mediaItem];
+    
+    if (firstTime) {
+        Media *mediaItem = [DataSource sharedInstance].mediaItems[indexPath.row];
+        if (mediaItem.downloadState == MediaDownloadStateNeedsImage) {
+            [[DataSource sharedInstance] downloadImageForMediaItem:mediaItem];
+        }
     }
+    
 }
 
 
