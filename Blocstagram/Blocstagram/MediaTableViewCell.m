@@ -141,7 +141,7 @@ static NSParagraphStyle *paragraphStyleForLikeLabel;
         self.likeButton.backgroundColor = usernameLabelGray;
         
         self.likesLabel = [[UILabel alloc]init];
-        self.likesLabel.numberOfLines = 1;
+        self.likesLabel.numberOfLines = 0;
         self.likesLabel.backgroundColor = usernameLabelGray;
         
         for (UIView *view in @[self.mediaImageView, self.usernameAndCaptionLabel, self.commentLabel, self.likesLabel, self.likeButton]) {
@@ -162,10 +162,42 @@ static NSParagraphStyle *paragraphStyleForLikeLabel;
 //                                                                                 options:kNilOptions
 //                                                                                 metrics:nil
 //                                                                                   views:viewDictionary]];
-        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_usernameAndCaptionLabel][_likesLabel(==50)][_likeButton(==38)]|"
-                                                                                 options:NSLayoutFormatAlignAllTop | NSLayoutFormatAlignAllBottom
+//        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_usernameAndCaptionLabel][_likesLabel(==50)][_likeButton(==38)]|"
+//                                                                                 options:NSLayoutFormatAlignAllTop | NSLayoutFormatAlignAllBottom
+//                                                                                 metrics:nil
+//                                                                                   views:viewDictionary]];
+        
+        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_usernameAndCaptionLabel][_likesLabel(==38)][_likeButton(==38)]|"
+                                                                                 options:NSLayoutFormatAlignAllTop
                                                                                  metrics:nil
                                                                                    views:viewDictionary]];
+
+ 
+        
+        
+//        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_usernameAndCaptionLabel][_likesLabel(==38)][_likeButton(==38)]|"
+//                                                                                 options:kNilOptions
+//                                                                                 metrics:nil
+//                                                                                   views:viewDictionary]];
+//        
+//        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_usernameAndCaptionLabel][_likeButton(==38)]|"
+//                                                                                 options:NSLayoutFormatAlignAllTop
+//                                                                                 metrics:nil
+//                                                                                   views:viewDictionary]];
+//
+//        [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_likesLabel(==38)][_likeButton(==38)]|"
+//                                                                                 options:NSLayoutFormatAlignAllCenterY
+//                                                                                 metrics:nil
+//                                                                                   views:viewDictionary]];
+
+        
+        
+        
+        
+        
+        
+        
+        
         [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_commentLabel]|"
                                                                                  options:kNilOptions
                                                                                  metrics:nil
@@ -223,10 +255,10 @@ static NSParagraphStyle *paragraphStyleForLikeLabel;
 
 - (NSAttributedString *) likesLabelString {
     
-    NSString *baseString = [NSString stringWithFormat:@"%@", self.mediaItem.likeCount];
+    NSString *baseString = [NSString stringWithFormat:@"\n%@", self.mediaItem.likeCount];
     NSMutableAttributedString *likesLabelString = [[NSMutableAttributedString alloc]
                                                    initWithString:baseString
-                                                   attributes:@{NSFontAttributeName : [lightFont fontWithSize:13],
+                                                   attributes:@{NSFontAttributeName : [lightFont fontWithSize:10],
                                                    NSParagraphStyleAttributeName : paragraphStyleForLikeLabel}];
     return likesLabelString;
 }
