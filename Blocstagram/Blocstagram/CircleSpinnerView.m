@@ -54,7 +54,8 @@
         maskLayer.frame = _circleLayer.bounds;
         _circleLayer.mask = maskLayer;
         
-        CFTimeInterval animationDuration = 1;
+//        CFTimeInterval animationDuration = 1;
+        CFTimeInterval animationDuration = 10;
         CAMediaTimingFunction *linearCurve = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionLinear];
         
         CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"transform.rotation"];
@@ -65,18 +66,23 @@
         animation.removedOnCompletion = NO;
         animation.repeatCount = INFINITY;
         animation.fillMode = kCAFillModeForwards;
-        animation.autoreverses = NO;
+//        animation.autoreverses = NO;
+        animation.autoreverses = YES;
         [_circleLayer.mask addAnimation:animation forKey:@"rotate"];
         
         CAAnimationGroup *animationGroup = [CAAnimationGroup animation];
         animationGroup.duration = animationDuration;
-        animationGroup.repeatCount = INFINITY;
+//        animationGroup.repeatCount = INFINITY;
+        animationGroup.repeatCount = 10;
         animationGroup.removedOnCompletion = NO;
         animationGroup.timingFunction = linearCurve;
         
         CABasicAnimation *strokeStartAnimation = [CABasicAnimation animationWithKeyPath:@"strokeStart"];
         strokeStartAnimation.fromValue = @0.015;
         strokeStartAnimation.toValue = @0.515;
+//        strokeStartAnimation.fromValue = @0.05;
+//        strokeStartAnimation.toValue = @0.915;
+
         
         CABasicAnimation *strokeEndAnimation = [CABasicAnimation animationWithKeyPath:@"strokeEnd"];
         strokeEndAnimation.fromValue = @0.485;
@@ -142,9 +148,12 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.strokeThickness = 1;
-        self.radius = 12;
-        self.strokeColor = [UIColor purpleColor];
+//        self.strokeThickness = 1;
+        self.strokeThickness = 10;
+//        self.radius = 12;
+        self.radius = 15;
+//        self.strokeColor = [UIColor purpleColor];
+        self.strokeColor = [UIColor greenColor];
     }
     return self;
 }
