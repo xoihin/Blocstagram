@@ -8,6 +8,7 @@
 
 #import "MediaFullScreenViewController.h"
 #import "Media.h"
+#import "ImagesTableViewController.h"
 
 
 
@@ -91,20 +92,23 @@
 
 - (void) shareButtonPressed {
     
-    NSMutableArray *itemsToShare = [NSMutableArray array];
+//    [ImagesTableViewController shareMediaItem:self.media fromViewController:self];
+    [ImagesTableViewController shareMediaItem:self.media fromViewController:self];
     
-    if (self.media.caption.length > 0) {
-        [itemsToShare addObject:self.media.caption];
-    }
-    
-    if (self.media.image) {
-        [itemsToShare addObject:self.media.image];
-    }
-    
-    if (itemsToShare.count > 0) {
-        UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:itemsToShare applicationActivities:nil];
-        [self presentViewController:activityVC animated:YES completion:nil];
-    }
+//    NSMutableArray *itemsToShare = [NSMutableArray array];
+//    
+//    if (self.media.caption.length > 0) {
+//        [itemsToShare addObject:self.media.caption];
+//    }
+//    
+//    if (self.media.image) {
+//        [itemsToShare addObject:self.media.image];
+//    }
+//    
+//    if (itemsToShare.count > 0) {
+//        UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:itemsToShare applicationActivities:nil];
+//        [self presentViewController:activityVC animated:YES completion:nil];
+//    }
 }
 
 

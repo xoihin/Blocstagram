@@ -200,22 +200,43 @@
 
 - (void) cell:(MediaTableViewCell *)cell didLongPressImageView:(UIImageView *)imageView {
     
+    [ImagesTableViewController shareMediaItem:cell.mediaItem fromViewController:self];
+    
+//    NSMutableArray *itemsToShare = [NSMutableArray array];
+//    
+//    if (cell.mediaItem.caption.length > 0) {
+//        [itemsToShare addObject:cell.mediaItem.caption];
+//    }
+//    
+//    if (cell.mediaItem.image) {
+//        [itemsToShare addObject:cell.mediaItem.image];
+//    }
+//    
+//    if (itemsToShare.count > 0) {
+//        UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:itemsToShare applicationActivities:nil];
+//        [self presentViewController:activityVC animated:YES completion:nil];
+//    }
+}
+
+
+
++ (void)shareMediaItem:(Media *)mediaItem fromViewController:(UIViewController *)myViewController {
+    
     NSMutableArray *itemsToShare = [NSMutableArray array];
     
-    if (cell.mediaItem.caption.length > 0) {
-        [itemsToShare addObject:cell.mediaItem.caption];
+    if (mediaItem.caption.length > 0) {
+        [itemsToShare addObject:mediaItem.caption];
     }
     
-    if (cell.mediaItem.image) {
-        [itemsToShare addObject:cell.mediaItem.image];
+    if (mediaItem.image) {
+        [itemsToShare addObject:mediaItem.image];
     }
     
     if (itemsToShare.count > 0) {
         UIActivityViewController *activityVC = [[UIActivityViewController alloc] initWithActivityItems:itemsToShare applicationActivities:nil];
-        [self presentViewController:activityVC animated:YES completion:nil];
+        [myViewController presentViewController:activityVC animated:YES completion:nil];
     }
 }
-
 
 /*
 // Override to support conditional editing of the table view.
