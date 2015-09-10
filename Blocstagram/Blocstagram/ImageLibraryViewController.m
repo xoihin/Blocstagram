@@ -80,11 +80,11 @@ static NSString * const reuseIdentifier = @"Cell";
     flowLayout.itemSize = CGSizeMake(cellSize, cellSize);
     flowLayout.minimumInteritemSpacing = 0;
 //    flowLayout.minimumLineSpacing = 0;
-    flowLayout.minimumLineSpacing = 1;
+    flowLayout.minimumLineSpacing = 2;
     
     // Set SectionInset
     //    [flowLayout setSectionInset:UIEdgeInsetsMake(top, left, bottom, right)];
-    [flowLayout setSectionInset:UIEdgeInsetsMake(0, 1, 0, 1)];
+    [flowLayout setSectionInset:UIEdgeInsetsMake(2, 1, 0, 1)];
 }
 
 
