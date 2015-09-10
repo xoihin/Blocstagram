@@ -12,7 +12,7 @@
 
 
 
-@interface ImageLibraryViewController ()
+@interface ImageLibraryViewController () <CropImageViewControllerDelegate>
 
 
 @property (nonatomic, strong) PHFetchResult *result;
