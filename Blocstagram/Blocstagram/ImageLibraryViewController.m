@@ -71,14 +71,19 @@ static NSString * const reuseIdentifier = @"Cell";
     [super viewWillLayoutSubviews];
     
     CGFloat width = CGRectGetWidth(self.view.frame);
-    CGFloat minWidth = 100;
-    NSInteger divisor = width / minWidth;
-    CGFloat cellSize = width / divisor;
+//    CGFloat minWidth = 100;
+//    NSInteger divisor = width / minWidth;
+//    CGFloat cellSize = width / divisor;
+    CGFloat cellSize = width / 4.5;
     
     UICollectionViewFlowLayout *flowLayout = (UICollectionViewFlowLayout *)self.collectionViewLayout;
     flowLayout.itemSize = CGSizeMake(cellSize, cellSize);
-    flowLayout.minimumInteritemSpacing = 0;
-    flowLayout.minimumLineSpacing = 0;
+//    flowLayout.minimumInteritemSpacing = 0;
+//    flowLayout.minimumLineSpacing = 0;
+    
+    // Set SectionInset
+    //    [flowLayout setSectionInset:UIEdgeInsetsMake(top, left, bottom, right)];
+    [flowLayout setSectionInset:UIEdgeInsetsMake(0, 0, 0, 0)];
 }
 
 
