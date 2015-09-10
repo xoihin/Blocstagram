@@ -74,16 +74,17 @@ static NSString * const reuseIdentifier = @"Cell";
 //    CGFloat minWidth = 100;
 //    NSInteger divisor = width / minWidth;
 //    CGFloat cellSize = width / divisor;
-    CGFloat cellSize = width / 4.5;
+    CGFloat cellSize = width / 4.1;
     
     UICollectionViewFlowLayout *flowLayout = (UICollectionViewFlowLayout *)self.collectionViewLayout;
     flowLayout.itemSize = CGSizeMake(cellSize, cellSize);
-//    flowLayout.minimumInteritemSpacing = 0;
+    flowLayout.minimumInteritemSpacing = 0;
 //    flowLayout.minimumLineSpacing = 0;
+    flowLayout.minimumLineSpacing = 1;
     
     // Set SectionInset
     //    [flowLayout setSectionInset:UIEdgeInsetsMake(top, left, bottom, right)];
-    [flowLayout setSectionInset:UIEdgeInsetsMake(0, 0, 0, 0)];
+    [flowLayout setSectionInset:UIEdgeInsetsMake(0, 1, 0, 1)];
 }
 
 
