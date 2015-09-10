@@ -71,6 +71,12 @@ static NSString * const reuseIdentifier = @"Cell";
     [super viewWillLayoutSubviews];
     
     CGFloat width = CGRectGetWidth(self.view.frame);
+    
+    // Keep cell to the same size regardless of the device's orientation (Trying to match to Photos app)
+    if(self.view.frame.size.width > self.view.frame.size.height) {
+        NSLog(@"Landscape");
+        width = CGRectGetHeight(self.view.frame);
+    }
 //    CGFloat minWidth = 100;
 //    NSInteger divisor = width / minWidth;
 //    CGFloat cellSize = width / divisor;
