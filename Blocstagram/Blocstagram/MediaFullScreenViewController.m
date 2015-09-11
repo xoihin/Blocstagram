@@ -85,6 +85,7 @@
     CGSize scrollViewFrameSize = self.scrollView.frame.size;
     CGSize scrollViewContentSize = self.scrollView.contentSize;
     
+    // Re-apply the next 2 lines
     scrollViewContentSize.height /= self.scrollView.zoomScale;
     scrollViewContentSize.width /= self.scrollView.zoomScale;
     
