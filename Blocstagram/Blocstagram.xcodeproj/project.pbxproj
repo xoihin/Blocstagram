@@ -41,6 +41,7 @@
 		F6B6C3011B91F901003A81E5 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6B6C3001B91F901003A81E5 /* LoginViewController.m */; };
 		F6DB68A11B9887EA00BCDFBF /* CircleSpinnerView.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DB68A01B9887EA00BCDFBF /* CircleSpinnerView.m */; };
 		F6DB68A41B988EAB00BCDFBF /* LikeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DB68A31B988EAB00BCDFBF /* LikeButton.m */; };
+		F6EBDAA41BA35AA8005D3954 /* PostToInstagramViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EBDAA31BA35AA8005D3954 /* PostToInstagramViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -113,6 +114,8 @@
 		F6DB68A01B9887EA00BCDFBF /* CircleSpinnerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleSpinnerView.m; sourceTree = "<group>"; };
 		F6DB68A21B988EAB00BCDFBF /* LikeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LikeButton.h; sourceTree = "<group>"; };
 		F6DB68A31B988EAB00BCDFBF /* LikeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LikeButton.m; sourceTree = "<group>"; };
+		F6EBDAA21BA35AA8005D3954 /* PostToInstagramViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostToInstagramViewController.h; sourceTree = "<group>"; };
+		F6EBDAA31BA35AA8005D3954 /* PostToInstagramViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostToInstagramViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -246,6 +249,8 @@
 				F6DB68A01B9887EA00BCDFBF /* CircleSpinnerView.m */,
 				F6DB68A21B988EAB00BCDFBF /* LikeButton.h */,
 				F6DB68A31B988EAB00BCDFBF /* LikeButton.m */,
+				F6EBDAA21BA35AA8005D3954 /* PostToInstagramViewController.h */,
+				F6EBDAA31BA35AA8005D3954 /* PostToInstagramViewController.m */,
 				F6A455DF1B8CBC4100F27092 /* Images.xcassets */,
 				F6A455E11B8CBC4100F27092 /* LaunchScreen.xib */,
 				F6A455D21B8CBC4100F27092 /* Supporting Files */,
@@ -437,6 +442,7 @@
 				F6825BF71B8D0502006CE0AC /* DataSource.m in Sources */,
 				F6003F2E1B9E06D800DB6238 /* CameraViewController.m in Sources */,
 				F6003F2B1B9E03F300DB6238 /* CameraToolbar.m in Sources */,
+				F6EBDAA41BA35AA8005D3954 /* PostToInstagramViewController.m in Sources */,
 				F6A455D51B8CBC4100F27092 /* main.m in Sources */,
 				F6DB68A41B988EAB00BCDFBF /* LikeButton.m in Sources */,
 				F6003F341B9E146B00DB6238 /* UIImage+ImageUtilities.m in Sources */,
