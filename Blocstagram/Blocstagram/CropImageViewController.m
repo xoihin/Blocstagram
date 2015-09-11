@@ -83,7 +83,9 @@
     [super viewWillLayoutSubviews];
     
     CGFloat width = CGRectGetWidth(self.view.bounds);
-    self.topView.frame = CGRectMake(0, self.topLayoutGuide.length, width, 44);
+//    self.topView.frame = CGRectMake(0, self.topLayoutGuide.length, width, 44);
+    CGFloat myHeight = (CGRectGetHeight(self.view.bounds) * .12);
+    self.topView.frame = CGRectMake(0, self.topLayoutGuide.length, width, myHeight);
     
     CGFloat yOriginOfBottomView = CGRectGetMaxY(self.topView.frame) + width;
     CGFloat heightOfBottomView = CGRectGetHeight(self.view.frame) - yOriginOfBottomView;
