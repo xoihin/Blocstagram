@@ -208,6 +208,48 @@
 - (void) addFiltersToQueue {
     CIImage *sourceCIImage = [CIImage imageWithCGImage:self.sourceImage.CGImage];
     
+    
+    // Color Invert
+    [self.photoFilterOperationQueue addOperationWithBlock:^{
+        CIFilter *colorInvertFilter = [CIFilter filterWithName:@"CIColorMatrix" keysAndValues:
+                                       kCIInputImageKey, sourceCIImage,
+                                       @"inputRVector", [CIVector vectorWithX: -1 Y:0 Z:0],
+                                       @"inputGVector", [CIVector vectorWithX:0 Y:-1 Z:0 ],
+                                       @"inputBVector", [CIVector vectorWithX: 0 Y:0 Z:-1],
+                                       @"inputBiasVector", [CIVector vectorWithX:1 Y:1 Z:1],
+                                       nil];
+        
+        if (colorInvertFilter) {
+            [colorInvertFilter setValue:sourceCIImage forKey:kCIInputImageKey];
+            [self addCIImageToCollectionView:colorInvertFilter.outputImage withFilterTitle:NSLocalizedString(@"Color Invert", @"Color Invert Filter")];
+        }
+    }];
+    
+    
+    // Chrome filter
+    
+    [self.photoFilterOperationQueue addOperationWithBlock:^{
+        CIFilter *chromeFilter = [CIFilter filterWithName:@"CIPhotoEffectChrome"];
+        
+        if (chromeFilter) {
+            [chromeFilter setValue:sourceCIImage forKey:kCIInputImageKey];
+            [self addCIImageToCollectionView:chromeFilter.outputImage withFilterTitle:NSLocalizedString(@"Chrome", @"Chrome Filter")];
+        }
+    }];
+    
+    
+    // Blur filter
+    
+    [self.photoFilterOperationQueue addOperationWithBlock:^{
+        CIFilter *blurFilter = [CIFilter filterWithName:@"CIGaussianBlur"];
+        
+        if (blurFilter) {
+            [blurFilter setValue:sourceCIImage forKey:kCIInputImageKey];
+            [self addCIImageToCollectionView:blurFilter.outputImage withFilterTitle:NSLocalizedString(@"Blur", @"Blur Filter")];
+        }
+    }];
+    
+    
     // Noir filter
     
     [self.photoFilterOperationQueue addOperationWithBlock:^{
