@@ -13,7 +13,5 @@
 
 @property (nonatomic, strong) UIImageView *myThumbnail;
 @property (nonatomic, strong) UILabel *myLabel;
-@property (nonatomic, assign) CGFloat myThumbnailEdgeSize;
-
 
 @end

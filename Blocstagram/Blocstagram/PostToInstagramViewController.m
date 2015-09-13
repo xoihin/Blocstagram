@@ -140,16 +140,13 @@
 }
 
 
+
 - (UICollectionViewCell*) collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     ImageFilterCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
     
-    UICollectionViewFlowLayout *flowLayout = (UICollectionViewFlowLayout *)self.filterCollectionView.collectionViewLayout;
-    CGFloat thumbnailEdgeSize = flowLayout.itemSize.width;
-        
     cell.myThumbnail.image = self.filterImages[indexPath.row];
     cell.myLabel.text = self.filterTitles[indexPath.row];
-    cell.myThumbnailEdgeSize = thumbnailEdgeSize;
     
     return cell;
 }
