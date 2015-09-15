@@ -213,13 +213,13 @@
         
         if (myFirstFilter) {
             [myFirstFilter setValue:sourceCIImage forKey:kCIInputImageKey];
-            [myFirstFilter setValue:[NSNumber numberWithFloat:5] forKey:@"inputAngle"];
+            [myFirstFilter setValue:[NSNumber numberWithFloat:1.0f] forKey:@"inputAngle"];
             
             CIImage *result = myFirstFilter.outputImage;
             
             if (mySecondFilter) {
                 [mySecondFilter setValue:result forKey:kCIInputImageKey];
-                [mySecondFilter setValue:[NSNumber numberWithFloat:5] forKey:@"inputEV"];
+                [mySecondFilter setValue:[NSNumber numberWithFloat:2.0f] forKey:@"inputEV"];
                 result = mySecondFilter.outputImage;
             }
             
