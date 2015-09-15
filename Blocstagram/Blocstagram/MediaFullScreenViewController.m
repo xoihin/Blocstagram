@@ -76,8 +76,6 @@
     self.tapOnGrayBorder.numberOfTapsRequired = 1;
     self.tapOnGrayBorder.cancelsTouchesInView = NO;
     self.tapOnGrayBorder.delegate = self;
-    [self.view.window addGestureRecognizer:self.tapOnGrayBorder];
-    
 }
 
 
