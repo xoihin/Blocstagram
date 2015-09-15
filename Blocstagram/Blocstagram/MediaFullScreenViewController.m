@@ -11,11 +11,12 @@
 
 
 
-@interface MediaFullScreenViewController () <UIScrollViewDelegate>
+@interface MediaFullScreenViewController () <UIScrollViewDelegate, UIGestureRecognizerDelegate>
 
 @property (nonatomic, strong) UITapGestureRecognizer *tap;
 @property (nonatomic, strong) UITapGestureRecognizer *doubleTap;
 
+@property (nonatomic, strong) UITapGestureRecognizer *tapOnGrayBorder;
 
 @end
 
@@ -69,6 +70,14 @@
     
     [self.scrollView addGestureRecognizer:self.tap];
     [self.scrollView addGestureRecognizer:self.doubleTap];
+    
+    
+    self.tapOnGrayBorder = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapOnGrayBorderFired:)];
+    self.tapOnGrayBorder.numberOfTapsRequired = 1;
+    self.tapOnGrayBorder.cancelsTouchesInView = NO;
+    self.tapOnGrayBorder.delegate = self;
+    [self.view.window addGestureRecognizer:self.tapOnGrayBorder];
+    
 }
 
 
@@ -185,6 +194,24 @@
     }
 }
 
+
+
+- (void) tapOnGrayBorderFired:(UITapGestureRecognizer *)sender {
+    NSLog(@"Tapped...");
+}
+
+
+- (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {
+    return YES;
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+    return YES;
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
+    return YES;
+}
 
 
 
