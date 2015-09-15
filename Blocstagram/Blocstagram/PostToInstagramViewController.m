@@ -187,6 +187,9 @@
     CIImage *sourceCIImage = [CIImage imageWithCGImage:self.sourceImage.CGImage];
     
     
+    
+    
+    
     // Color Invert
     [self.photoFilterOperationQueue addOperationWithBlock:^{
         CIFilter *colorInvertFilter = [CIFilter filterWithName:@"CIColorMatrix" keysAndValues:
@@ -202,6 +205,52 @@
             [self addCIImageToCollectionView:colorInvertFilter.outputImage withFilterTitle:NSLocalizedString(@"Color Invert", @"Color Invert Filter")];
         }
     }];
+    
+    // Test compound filters
+    [self.photoFilterOperationQueue addOperationWithBlock:^{
+        CIFilter *myFirstFilter = [CIFilter filterWithName:@"CIHueAdjust"];
+        CIFilter *mySecondFilter = [CIFilter filterWithName:@"CIExposureAdjust"];
+        
+        if (myFirstFilter) {
+            [myFirstFilter setValue:sourceCIImage forKey:kCIInputImageKey];
+            [myFirstFilter setValue:[NSNumber numberWithFloat:5] forKey:@"inputAngle"];
+            
+            CIImage *result = myFirstFilter.outputImage;
+            
+            if (mySecondFilter) {
+                [mySecondFilter setValue:result forKey:kCIInputImageKey];
+                [mySecondFilter setValue:[NSNumber numberWithFloat:5] forKey:@"inputEV"];
+                result = mySecondFilter.outputImage;
+            }
+            
+            [self addCIImageToCollectionView:result withFilterTitle:NSLocalizedString(@"Compound1", @"Test Compound Filter")];
+        }
+    }];
+    
+    
+
+//    // Compound Filter
+//    [self.photoFilterOperationQueue addOperationWithBlock:^{
+//        
+//        CIFilter *testFilter1 = [CIFilter filterWithName:@"CIGloom"];
+//        [testFilter1 setDefaults];
+//        [testFilter1 setValue: sourceCIImage forKey: kCIInputImageKey];
+//        [testFilter1 setValue: @25.0f forKey: kCIInputRadiusKey];
+//        [testFilter1 setValue: @0.75f forKey: kCIInputIntensityKey];
+//        CIImage *result = [testFilter1 valueForKey: kCIOutputImageKey];
+//        
+//        CIFilter *testFilter2 = [CIFilter filterWithName:@"CIBumpDistortion"];
+//        [testFilter2 setDefaults];
+//        [testFilter2 setValue: result forKey: kCIInputImageKey];
+//        [testFilter2 setValue: [CIVector vectorWithX:200 Y:150]forKey: kCIInputCenterKey];
+//        [testFilter2 setValue: @100.0f forKey: kCIInputRadiusKey];
+//        [testFilter2 setValue: @3.0f forKey: kCIInputScaleKey];
+//        result = [testFilter2 valueForKey: kCIOutputImageKey];
+//        
+//        [self addCIImageToCollectionView:result withFilterTitle:NSLocalizedString(@"Compound2", @"Compound Filter")];
+//        
+//    }];
+
     
     
     // Chrome filter
@@ -308,6 +357,7 @@
             [self addCIImageToCollectionView:result withFilterTitle:NSLocalizedString(@"Drunk", @"Drunk Filter")];
         }
     }];
+    
     
     
     
