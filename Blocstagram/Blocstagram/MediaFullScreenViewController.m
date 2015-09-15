@@ -81,6 +81,29 @@
 }
 
 
+- (void)viewDidAppear:(BOOL)animated {
+    if (!self.tapOnGrayBorder) {
+        self.tapOnGrayBorder = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapOnGrayBorderFired:)];
+        self.tapOnGrayBorder.numberOfTapsRequired = 1;
+        self.tapOnGrayBorder.cancelsTouchesInView = NO;
+        self.tapOnGrayBorder.delegate = self;
+    }
+    [self.view.window addGestureRecognizer:self.tapOnGrayBorder];
+}
+
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    // Remove if needed
+    if (self.tapOnGrayBorder) {
+        [self.view.window removeGestureRecognizer:self.tapOnGrayBorder];
+        self.tapOnGrayBorder = nil;
+    }
+}
+
+
+
 - (void) viewWillLayoutSubviews {
     [super viewWillLayoutSubviews];
     // #4
@@ -197,7 +220,17 @@
 
 
 - (void) tapOnGrayBorderFired:(UITapGestureRecognizer *)sender {
-    NSLog(@"Tapped...");
+        
+    if (sender.state == UIGestureRecognizerStateEnded)
+    {
+        CGPoint location = [sender locationInView:self.view];
+        
+        if (![self.view pointInside:location withEvent:nil]) {
+            [self.view.window removeGestureRecognizer:self.tapOnGrayBorder];
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }
+    }
+    
 }
 
 
