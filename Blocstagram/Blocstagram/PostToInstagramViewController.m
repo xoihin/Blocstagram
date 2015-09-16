@@ -45,6 +45,7 @@
     if (self) {
         self.sourceImage = sourceImage;
         self.previewImageView = [[UIImageView alloc] initWithImage:self.sourceImage];
+        self.previewImageView.contentMode = UIViewContentModeScaleAspectFit;
         
         self.photoFilterOperationQueue = [[NSOperationQueue alloc] init];
         
@@ -88,16 +89,16 @@
     [self.filterCollectionView setTranslatesAutoresizingMaskIntoConstraints:NO];
     [self.sendButton setTranslatesAutoresizingMaskIntoConstraints:NO];
     
-    
-    
     [self.view addSubview:self.previewImageView];
     [self.view addSubview:self.filterCollectionView];
     
-    if (CGRectGetHeight(self.view.frame) > 500) {
+//    if (self.traitCollection.horizontalSizeClass == UIUserInterfaceSizeClassCompact) {
+        /* It's compact! */
+//        self.navigationItem.rightBarButtonItem = self.sendBarButton;
+//    } else if (self.traitCollection.horizontalSizeClass == UIUserInterfaceSizeClassRegular) {
+        /* It's regular! */
         [self.view addSubview:self.sendButton];
-    } else {
-        self.navigationItem.rightBarButtonItem = self.sendBarButton;
-    }
+//    }
     
     [self.filterCollectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:@"cell"];
     
@@ -119,19 +120,9 @@
     
     CGFloat edgeSize = MIN(CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame));
     
-    
-//    if (CGRectGetHeight(self.view.bounds) < edgeSize * 1.5) {
-//        edgeSize /= 1.5;
-//    }
-    
-    if (self.traitCollection.horizontalSizeClass == UIUserInterfaceSizeClassCompact) {
-        /* It's compact! */
-        
-    } else if (self.traitCollection.horizontalSizeClass == UIUserInterfaceSizeClassRegular) {
-        /* It's regular! */
-        edgeSize /= 2.0;
+    if (CGRectGetHeight(self.view.bounds) < edgeSize * 1.5) {
+        edgeSize /= 1.5;
     }
-    
     
     self.previewImageView.frame = CGRectMake(0, self.topLayoutGuide.length, edgeSize, edgeSize);
     
@@ -141,13 +132,15 @@
     CGFloat filterViewYOrigin = CGRectGetMaxY(self.previewImageView.frame) + buffer;
     CGFloat filterViewHeight;
     
-    if (CGRectGetHeight(self.view.frame) > 500) {
+//    if (self.traitCollection.horizontalSizeClass == UIUserInterfaceSizeClassCompact) {
+        /* It's compact! */
+        filterViewHeight = CGRectGetHeight(self.view.frame) - CGRectGetMaxY(self.previewImageView.frame) - buffer - buffer;
+//    } else if (self.traitCollection.horizontalSizeClass == UIUserInterfaceSizeClassRegular) {
+        /* It's regular! */
         self.sendButton.frame = CGRectMake(buffer, CGRectGetHeight(self.view.frame) - buffer - buttonHeight, CGRectGetWidth(self.view.frame) - 2 * buffer, buttonHeight);
         
-        filterViewHeight = CGRectGetHeight(self.view.frame) - filterViewYOrigin - buffer - buffer - CGRectGetHeight(self.sendButton.frame);
-    } else {
-        filterViewHeight = CGRectGetHeight(self.view.frame) - CGRectGetMaxY(self.previewImageView.frame) - buffer - buffer;
-    }
+//        filterViewHeight = CGRectGetHeight(self.view.frame) - filterViewYOrigin - buffer - buffer - CGRectGetHeight(self.sendButton.frame);
+//    }
     
     self.filterCollectionView.frame = CGRectMake(0, filterViewYOrigin, CGRectGetWidth(self.view.frame), filterViewHeight);
     
@@ -155,60 +148,19 @@
     flowLayout.itemSize = CGSizeMake(CGRectGetHeight(self.filterCollectionView.frame) - 20, CGRectGetHeight(self.filterCollectionView.frame));
     
     
-    // Define auto-layout
-    NSDictionary *viewDictionary = NSDictionaryOfVariableBindings(_previewImageView, _filterCollectionView, _sendButton);
+    // Auto-layout
+//    if (self.traitCollection.horizontalSizeClass == UIUserInterfaceSizeClassCompact) {
+        /* It's compact! */
+//        NSLog(@"compact...");
+//        [self myAutoLayoutCompact:&edgeSize myItemSizeHeight:&filterViewHeight];
     
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_previewImageView]|"
-                                                                             options:NSLayoutFormatAlignAllTop | NSLayoutFormatAlignAllCenterY
-                                                                             metrics:nil
-                                                                               views:viewDictionary]];
+//    } else if (self.traitCollection.horizontalSizeClass == UIUserInterfaceSizeClassRegular) {
+        /* It's regular! */
+//        NSLog(@"regular...");
+        [self myAutoLayoutRegular:&edgeSize myItemSizeHeight:&filterViewHeight mySendButtonHeight:&buttonHeight];
+        
+//    }
     
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_filterCollectionView]|"
-                                                                             options:kNilOptions
-                                                                             metrics:nil
-                                                                               views:viewDictionary]];
-    
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_sendButton]|"
-                                                                      options:NSLayoutFormatAlignAllCenterY
-                                                                      metrics:nil
-                                                                        views:viewDictionary]];
-    
-    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-[_previewImageView]-[_filterCollectionView][_sendButton]"
-                                                                             options:kNilOptions
-                                                                             metrics:nil
-                                                                               views:viewDictionary]];
-    
-    self.myPreviewHeightConstraint = [NSLayoutConstraint constraintWithItem:_previewImageView
-                                                              attribute:NSLayoutAttributeHeight
-                                                              relatedBy:NSLayoutRelationEqual
-                                                                 toItem:nil
-                                                              attribute:NSLayoutAttributeNotAnAttribute
-                                                             multiplier:1
-                                                               constant:edgeSize];
-    
-    self.myItemHeightConstraint = [NSLayoutConstraint constraintWithItem:_filterCollectionView
-                                                                  attribute:NSLayoutAttributeHeight
-                                                                  relatedBy:NSLayoutRelationEqual
-                                                                     toItem:nil
-                                                                  attribute:NSLayoutAttributeNotAnAttribute
-                                                                 multiplier:1
-                                                                   constant:filterViewHeight];
-    
-    self.myButtonHeightConstraint = [NSLayoutConstraint constraintWithItem:_sendButton
-                                                               attribute:NSLayoutAttributeHeight
-                                                               relatedBy:NSLayoutRelationEqual
-                                                                  toItem:nil
-                                                               attribute:NSLayoutAttributeNotAnAttribute
-                                                              multiplier:1
-                                                                constant:buttonHeight];
-    
-    self.myPreviewHeightConstraint.identifier = @"Image height constraint";
-    self.myItemHeightConstraint.identifier = @"Collection View Item Size Height";
-    self.myButtonHeightConstraint.identifier = @"Send Button Height";
-    
-    [self.view addConstraints:@[self.myPreviewHeightConstraint, self.myItemHeightConstraint, self.myButtonHeightConstraint]];
-    
-
 }
 
 
@@ -234,7 +186,8 @@
     
     if (!thumbnail) {
         thumbnail = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, thumbnailEdgeSize, thumbnailEdgeSize)];
-        thumbnail.contentMode = UIViewContentModeScaleAspectFill;
+//        thumbnail.contentMode = UIViewContentModeScaleAspectFill;
+        thumbnail.contentMode = UIViewContentModeScaleAspectFit;
         thumbnail.tag = imageViewTag;
         thumbnail.clipsToBounds = YES;
         
@@ -530,15 +483,111 @@
 
 
 
+#pragma mark - Auto-Layout
 
-/*
-#pragma mark - Navigation
+- (void)myAutoLayoutRegular:(CGFloat *)myImageHeight myItemSizeHeight:(CGFloat *)myItemHeight mySendButtonHeight:(CGFloat *)myButtonHeight {
+    
+    NSDictionary *viewDictionary = NSDictionaryOfVariableBindings(_previewImageView, _filterCollectionView, _sendButton);
+    
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_previewImageView]|"
+                                                                      options:NSLayoutFormatAlignAllTop | NSLayoutFormatAlignAllCenterY
+                                                                      metrics:nil
+                                                                        views:viewDictionary]];
+    
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_filterCollectionView]|"
+                                                                      options:kNilOptions
+                                                                      metrics:nil
+                                                                        views:viewDictionary]];
+    
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_sendButton]|"
+                                                                      options:NSLayoutFormatAlignAllCenterY
+                                                                      metrics:nil
+                                                                        views:viewDictionary]];
+    
+    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-[_previewImageView]-[_filterCollectionView][_sendButton]"
+                                                                      options:kNilOptions
+                                                                      metrics:nil
+                                                                        views:viewDictionary]];
+    
+    self.myPreviewHeightConstraint = [NSLayoutConstraint constraintWithItem:_previewImageView
+                                                                  attribute:NSLayoutAttributeHeight
+                                                                  relatedBy:NSLayoutRelationEqual
+                                                                     toItem:nil
+                                                                  attribute:NSLayoutAttributeNotAnAttribute
+                                                                 multiplier:1
+                                                                   constant:*myImageHeight];
+    
+    self.myItemHeightConstraint = [NSLayoutConstraint constraintWithItem:_filterCollectionView
+                                                               attribute:NSLayoutAttributeHeight
+                                                               relatedBy:NSLayoutRelationEqual
+                                                                  toItem:nil
+                                                               attribute:NSLayoutAttributeNotAnAttribute
+                                                              multiplier:1
+                                                                constant:*myItemHeight];
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    self.myButtonHeightConstraint = [NSLayoutConstraint constraintWithItem:_sendButton
+                                                                 attribute:NSLayoutAttributeHeight
+                                                                 relatedBy:NSLayoutRelationEqual
+                                                                    toItem:nil
+                                                                 attribute:NSLayoutAttributeNotAnAttribute
+                                                                multiplier:1
+                                                                  constant:*myButtonHeight];
+    
+    self.myPreviewHeightConstraint.identifier = @"Image height constraint";
+    self.myItemHeightConstraint.identifier = @"Collection View Item Size Height";
+    self.myButtonHeightConstraint.identifier = @"Send Button Height";
+    
+    [self.view addConstraints:@[self.myPreviewHeightConstraint, self.myItemHeightConstraint, self.myButtonHeightConstraint]];
 }
-*/
+
+
+//- (void)myAutoLayoutCompact:(CGFloat *)myImageHeight myItemSizeHeight:(CGFloat *)myItemHeight {
+//    
+//    NSDictionary *viewDictionary = NSDictionaryOfVariableBindings(_previewImageView, _filterCollectionView, _sendButton);
+//    
+//    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_previewImageView]|"
+//                                                                      options:NSLayoutFormatAlignAllTop | NSLayoutFormatAlignAllCenterY
+//                                                                      metrics:nil
+//                                                                        views:viewDictionary]];
+//    
+//    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[_filterCollectionView]|"
+//                                                                      options:kNilOptions
+//                                                                      metrics:nil
+//                                                                        views:viewDictionary]];
+//    
+//    [self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-[_previewImageView]-[_filterCollectionView]"
+//                                                                      options:kNilOptions
+//                                                                      metrics:nil
+//                                                                        views:viewDictionary]];
+//    
+//    self.myPreviewHeightConstraint = [NSLayoutConstraint constraintWithItem:_previewImageView
+//                                                                  attribute:NSLayoutAttributeHeight
+//                                                                  relatedBy:NSLayoutRelationEqual
+//                                                                     toItem:nil
+//                                                                  attribute:NSLayoutAttributeNotAnAttribute
+//                                                                 multiplier:1
+//                                                                   constant:*myImageHeight];
+//    
+//    self.myItemHeightConstraint = [NSLayoutConstraint constraintWithItem:_filterCollectionView
+//                                                               attribute:NSLayoutAttributeHeight
+//                                                               relatedBy:NSLayoutRelationEqual
+//                                                                  toItem:nil
+//                                                               attribute:NSLayoutAttributeNotAnAttribute
+//                                                              multiplier:1
+//                                                                constant:*myItemHeight];
+//    
+//    self.myPreviewHeightConstraint.identifier = @"Image height constraint";
+//    self.myItemHeightConstraint.identifier = @"Collection View Item Size Height";
+//    
+//    [self.view addConstraints:@[self.myPreviewHeightConstraint, self.myItemHeightConstraint]];
+//}
+
+
+
+
+
+
+
+
 
 @end
