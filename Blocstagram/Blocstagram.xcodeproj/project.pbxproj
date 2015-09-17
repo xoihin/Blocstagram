@@ -39,6 +39,9 @@
 		F6A455EF1B8CBC4100F27092 /* BlocstagramTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A455EE1B8CBC4100F27092 /* BlocstagramTests.m */; };
 		F6A614AA1B9B2D070090A334 /* ComposeCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A614A91B9B2D070090A334 /* ComposeCommentView.m */; };
 		F6B6C3011B91F901003A81E5 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6B6C3001B91F901003A81E5 /* LoginViewController.m */; };
+		F6CACA5F1BAAFBC800421093 /* MediaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F6CACA5E1BAAFBC800421093 /* MediaTests.m */; };
+		F6CACA611BAB158F00421093 /* CommentTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F6CACA601BAB158F00421093 /* CommentTests.m */; };
+		F6CACA631BAB1A1900421093 /* MediaTableViewCellTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F6CACA621BAB1A1900421093 /* MediaTableViewCellTests.m */; };
 		F6DB14BD1BAA5F9000A63E1C /* UserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DB14BC1BAA5F9000A63E1C /* UserTests.m */; };
 		F6DB68A11B9887EA00BCDFBF /* CircleSpinnerView.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DB68A01B9887EA00BCDFBF /* CircleSpinnerView.m */; };
 		F6DB68A41B988EAB00BCDFBF /* LikeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DB68A31B988EAB00BCDFBF /* LikeButton.m */; };
@@ -111,6 +114,9 @@
 		F6A614A91B9B2D070090A334 /* ComposeCommentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComposeCommentView.m; sourceTree = "<group>"; };
 		F6B6C2FF1B91F901003A81E5 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		F6B6C3001B91F901003A81E5 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		F6CACA5E1BAAFBC800421093 /* MediaTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaTests.m; sourceTree = "<group>"; };
+		F6CACA601BAB158F00421093 /* CommentTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentTests.m; sourceTree = "<group>"; };
+		F6CACA621BAB1A1900421093 /* MediaTableViewCellTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaTableViewCellTests.m; sourceTree = "<group>"; };
 		F6DB14BC1BAA5F9000A63E1C /* UserTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserTests.m; sourceTree = "<group>"; };
 		F6DB689F1B9887EA00BCDFBF /* CircleSpinnerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleSpinnerView.h; sourceTree = "<group>"; };
 		F6DB68A01B9887EA00BCDFBF /* CircleSpinnerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleSpinnerView.m; sourceTree = "<group>"; };
@@ -275,6 +281,9 @@
 				F6A455EE1B8CBC4100F27092 /* BlocstagramTests.m */,
 				F6A455EC1B8CBC4100F27092 /* Supporting Files */,
 				F6DB14BC1BAA5F9000A63E1C /* UserTests.m */,
+				F6CACA5E1BAAFBC800421093 /* MediaTests.m */,
+				F6CACA601BAB158F00421093 /* CommentTests.m */,
+				F6CACA621BAB1A1900421093 /* MediaTableViewCellTests.m */,
 			);
 			path = BlocstagramTests;
 			sourceTree = "<group>";
@@ -459,8 +468,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F6CACA5F1BAAFBC800421093 /* MediaTests.m in Sources */,
 				F6DB14BD1BAA5F9000A63E1C /* UserTests.m in Sources */,
 				F6A455EF1B8CBC4100F27092 /* BlocstagramTests.m in Sources */,
+				F6CACA631BAB1A1900421093 /* MediaTableViewCellTests.m in Sources */,
+				F6CACA611BAB158F00421093 /* CommentTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
