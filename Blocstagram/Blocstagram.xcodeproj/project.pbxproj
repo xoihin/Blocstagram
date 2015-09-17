@@ -39,6 +39,7 @@
 		F6A455EF1B8CBC4100F27092 /* BlocstagramTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A455EE1B8CBC4100F27092 /* BlocstagramTests.m */; };
 		F6A614AA1B9B2D070090A334 /* ComposeCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A614A91B9B2D070090A334 /* ComposeCommentView.m */; };
 		F6B6C3011B91F901003A81E5 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6B6C3001B91F901003A81E5 /* LoginViewController.m */; };
+		F6DB14BD1BAA5F9000A63E1C /* UserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DB14BC1BAA5F9000A63E1C /* UserTests.m */; };
 		F6DB68A11B9887EA00BCDFBF /* CircleSpinnerView.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DB68A01B9887EA00BCDFBF /* CircleSpinnerView.m */; };
 		F6DB68A41B988EAB00BCDFBF /* LikeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = F6DB68A31B988EAB00BCDFBF /* LikeButton.m */; };
 		F6EBDAA41BA35AA8005D3954 /* PostToInstagramViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EBDAA31BA35AA8005D3954 /* PostToInstagramViewController.m */; };
@@ -110,6 +111,7 @@
 		F6A614A91B9B2D070090A334 /* ComposeCommentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComposeCommentView.m; sourceTree = "<group>"; };
 		F6B6C2FF1B91F901003A81E5 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		F6B6C3001B91F901003A81E5 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		F6DB14BC1BAA5F9000A63E1C /* UserTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserTests.m; sourceTree = "<group>"; };
 		F6DB689F1B9887EA00BCDFBF /* CircleSpinnerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleSpinnerView.h; sourceTree = "<group>"; };
 		F6DB68A01B9887EA00BCDFBF /* CircleSpinnerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleSpinnerView.m; sourceTree = "<group>"; };
 		F6DB68A21B988EAB00BCDFBF /* LikeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LikeButton.h; sourceTree = "<group>"; };
@@ -272,6 +274,7 @@
 			children = (
 				F6A455EE1B8CBC4100F27092 /* BlocstagramTests.m */,
 				F6A455EC1B8CBC4100F27092 /* Supporting Files */,
+				F6DB14BC1BAA5F9000A63E1C /* UserTests.m */,
 			);
 			path = BlocstagramTests;
 			sourceTree = "<group>";
@@ -456,6 +459,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F6DB14BD1BAA5F9000A63E1C /* UserTests.m in Sources */,
 				F6A455EF1B8CBC4100F27092 /* BlocstagramTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
